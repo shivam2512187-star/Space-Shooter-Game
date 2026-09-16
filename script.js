@@ -25,7 +25,7 @@ let gameRunning = false;
 
 let keys = {};
 
-let highScore = localStorage.getItem("highScore") || 0;
+let highScore = localStorage.getItem("highScore") ;
 
 document.getElementById("highScore").textContent = highScore;
 
@@ -90,7 +90,7 @@ function drawPlayer() {
 
     ctx.closePath();
 
-    ctx.fill();
+     ctx.fill();
 
 }
 
@@ -147,9 +147,9 @@ function createEnemy() {
         x: Math.random() * (canvas.width - 70),
         y:-60,
         width:70,
-        height: 50,
-        speed: 1.5,
-        image: enemyImage
+        height:50,
+        image: enemyImage,
+        speed:Math.random()*3,
     };
 
     enemies.push(enemy);
