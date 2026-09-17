@@ -1,4 +1,5 @@
  let canvas = document.getElementById("gameCanvas");
+
 let ctx = canvas.getContext("2d");
 
 canvas.width = 800;
@@ -7,12 +8,15 @@ canvas.height = 500;
 let enemyImage = new Image();
 enemyImage.src = "enemy copy.png";
 
+let shooterImage = new Image();
+shooterImage.src = "shooter copy.png";
+
 let player = {
     x: 375,
     y: 440,
-    width: 50,
-    height: 30,
-    speed: 6
+    width: 100,
+    height: 70,
+    speed: 4
 };
 
 let bullets = [];
@@ -25,7 +29,7 @@ let gameRunning = false;
 
 let keys = {};
 
-let highScore = localStorage.getItem("highScore") ;
+let highScore = localStorage.getItem("highScore") || 0;
 
 document.getElementById("highScore").textContent = highScore;
 
@@ -69,28 +73,13 @@ function movePlayer() {
 
 function drawPlayer() {
 
-    ctx.fillStyle = "cyan";
-
-    ctx.beginPath();
-
-    ctx.moveTo(
-        player.x + player.width / 2,
-        player.y
-    );
-
-    ctx.lineTo(
+    ctx.drawImage(
+        shooterImage,
         player.x,
-        player.y + player.height
+        player.y,
+        player.width,
+        player.height
     );
-
-    ctx.lineTo(
-        player.x + player.width,
-        player.y + player.height
-    );
-
-    ctx.closePath();
-
-     ctx.fill();
 
 }
 
@@ -112,11 +101,11 @@ function shoot() {
 
 }
 
-      function drawBullets() {
+function drawBullets() {
 
     ctx.fillStyle = "yellow";
 
-    for (let i = bullets.length-1; i >= 0; i--) {
+    for (let i = bullets.length - 1; i >= 0; i--) {
 
         let bullet = bullets[i];
 
@@ -145,11 +134,11 @@ function createEnemy() {
 
     let enemy = {
         x: Math.random() * (canvas.width - 70),
-        y:-60,
-        width:70,
-        height:50,
+        y: -60,
+        width: 70,
+        height: 50,
         image: enemyImage,
-        speed:Math.random()*3,
+        speed: Math.random() * 3
     };
 
     enemies.push(enemy);
@@ -157,10 +146,8 @@ function createEnemy() {
 }
 
 setInterval(function() {
-
     createEnemy();
-
-},1000);
+}, 1000);
 
 function drawEnemies() {
 
@@ -168,7 +155,7 @@ function drawEnemies() {
 
         let enemy = enemies[i];
 
-          ctx.drawImage(
+        ctx.drawImage(
             enemy.image,
             enemy.x,
             enemy.y,
@@ -196,7 +183,7 @@ function drawEnemies() {
 
 }
 
- function checkCollision(bullet, enemy) {
+function checkCollision(bullet, enemy) {
 
     return (
         bullet.x < enemy.x + enemy.width &&
@@ -216,7 +203,6 @@ function checkBulletCollision() {
             if (checkCollision(bullets[i], enemies[j])) {
 
                 bullets.splice(i, 1);
-
                 enemies.splice(j, 1);
 
                 score += 10;
@@ -261,7 +247,7 @@ function clearScreen() {
         0,
         0,
         canvas.width,
-        canvas.height,
+        canvas.height
     );
 
 }
@@ -276,8 +262,7 @@ function gameOver() {
 
     ctx.font = "50px Arial";
 
-    ctx.textAlign =  "center";
-   
+    ctx.textAlign = "center";
 
     ctx.fillText(
         "GAME OVER",
@@ -346,7 +331,7 @@ document.getElementById("startBtn").addEventListener(
 
         enemies = [];
 
-        player.x =375;
+        player.x = 375;
 
         gameRunning = true;
 
@@ -354,7 +339,7 @@ document.getElementById("startBtn").addEventListener(
 
         document.getElementById("lives").textContent = lives;
 
-         this.textContent = "Restart Game";
+        this.textContent = "Restart Game";
 
         gameLoop();
 
