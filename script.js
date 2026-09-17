@@ -12,11 +12,11 @@ let shooterImage = new Image();
 shooterImage.src = "shooter copy.png";
 
 let player = {
-    x: 375,
+    x: 350,
     y: 440,
     width: 100,
     height: 70,
-    speed: 4
+    speed: 7
 };
 
 let bullets = [];
@@ -28,6 +28,7 @@ let lives = 3;
 let gameRunning = false;
 
 let keys = {};
+ 
 
 let highScore = localStorage.getItem("highScore") || 0;
 
@@ -61,6 +62,15 @@ function movePlayer() {
         player.x += player.speed;
     }
 
+    let leftBtn= document.getElementById("leftBtn");
+    let rightBtn= document.getElementById("rightBtn");
+    let Shoot = document.getElementById("Shoot");
+
+    leftBtn.addEventListener("touchstart" ,function(e){
+        e.preventDefault();
+        player.x -=player.speed;
+    })
+
     if (player.x < 0) {
         player.x = 0;
     }
@@ -70,6 +80,8 @@ function movePlayer() {
     }
 
 }
+
+ 
 
 function drawPlayer() {
 
@@ -300,8 +312,8 @@ function gameLoop() {
     if (!gameRunning) {
         return;
     }
-
-    clearScreen();
+     
+   clearScreen();
 
     movePlayer();
 
@@ -331,7 +343,7 @@ document.getElementById("startBtn").addEventListener(
 
         enemies = [];
 
-        player.x = 375;
+        player.x = 350;
 
         gameRunning = true;
 
@@ -340,6 +352,8 @@ document.getElementById("startBtn").addEventListener(
         document.getElementById("lives").textContent = lives;
 
         this.textContent = "Restart Game";
+       
+        
 
         gameLoop();
 

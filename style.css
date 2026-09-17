@@ -61,3 +61,27 @@ p {
     margin-top: 15px;
     color: #aaa;
 }
+ 
+
+#shootBtn {
+    width: 100px;
+}
+
+.mobile-controls{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:20px;
+    margin-top:15px;
+}
+.mobile-controls button{
+    width:72px;
+    height:55px;
+    font-size:15px;
+    border:none;
+    border-radius:10px;
+}
+
+#Shoot{
+    width:100px;
+}
