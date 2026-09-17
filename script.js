@@ -16,7 +16,7 @@ let player = {
     y: 440,
     width: 100,
     height: 70,
-    speed: 7
+    speed: 6
 };
 
 let bullets = [];
@@ -73,18 +73,18 @@ function movePlayer() {
 
 }
 
-  let moveLeft = false;
-let moveRight = false;
+ 
 
 let leftBtn = document.getElementById("leftBtn");
 let rightBtn = document.getElementById("rightBtn");
 let Shoot = document.getElementById("Shoot");
 
+ 
 leftBtn.addEventListener("pointerdown", function(e) {
 
     e.preventDefault();
 
-    moveLeft = true;
+    keys["ArrowLeft"] = true;
 
 });
 
@@ -92,22 +92,27 @@ leftBtn.addEventListener("pointerup", function(e) {
 
     e.preventDefault();
 
-    moveLeft = false;
+    keys["ArrowLeft"] = false;
 
 });
 
-leftBtn.addEventListener("pointerleave", function(e) {
+leftBtn.addEventListener("pointercancel", function() {
 
-    moveLeft = false;
+    keys["ArrowLeft"] = false;
 
 });
 
+leftBtn.addEventListener("pointerleave", function() {
+
+    keys["ArrowLeft"] = false;
+
+});
 
 rightBtn.addEventListener("pointerdown", function(e) {
 
     e.preventDefault();
 
-    moveRight = true;
+    keys["ArrowRight"] = true;
 
 });
 
@@ -115,16 +120,21 @@ rightBtn.addEventListener("pointerup", function(e) {
 
     e.preventDefault();
 
-    moveRight = false;
+    keys["ArrowRight"] = false;
 
 });
 
-rightBtn.addEventListener("pointerleave", function(e) {
+rightBtn.addEventListener("pointercancel", function() {
 
-    moveRight = false;
+    keys["ArrowRight"] = false;
 
 });
 
+rightBtn.addEventListener("pointerleave", function() {
+
+    keys["ArrowRight"] = false;
+
+});
 
 Shoot.addEventListener("pointerdown", function(e) {
 
@@ -133,6 +143,10 @@ Shoot.addEventListener("pointerdown", function(e) {
     shoot();
 
 });
+
+ 
+
+ 
  
 
 function drawPlayer() {

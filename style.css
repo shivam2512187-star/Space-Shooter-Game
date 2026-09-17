@@ -85,3 +85,11 @@ p {
 #Shoot{
     width:100px;
 }
+
+#leftBtn,
+#rightBtn,
+#Shoot {
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+}
