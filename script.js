@@ -70,6 +70,15 @@ function movePlayer() {
         e.preventDefault();
         player.x -=player.speed;
     })
+     rightBtn.addEventListener("touchstart" ,function(e){
+        e.preventDefault();
+        player.x +=player.speed;
+    })
+
+shoot.addEventListener("touchstart",function(e){
+    e.preventDefault();
+    shoot();
+})
 
     if (player.x < 0) {
         player.x = 0;
