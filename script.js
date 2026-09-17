@@ -75,7 +75,7 @@ function movePlayer() {
         player.x +=player.speed;
     })
 
-shoot.addEventListener("touchstart",function(e){
+Shoot.addEventListener("touchstart",function(e){
     e.preventDefault();
     shoot();
 })
