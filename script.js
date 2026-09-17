@@ -79,11 +79,11 @@ function movePlayer() {
 
     leftBtn.addEventListener("touchstart" ,function(e){
         e.preventDefault();
-        player.x -=player.speed;
+        player.x -=player.speed*3;
     })
      rightBtn.addEventListener("touchstart" ,function(e){
         e.preventDefault();
-        player.x +=player.speed;
+        player.x +=player.speed*3;
     })
 
 Shoot.addEventListener("touchstart",function(e){
