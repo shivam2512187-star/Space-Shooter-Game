@@ -1,4 +1,4 @@
- let canvas = document.getElementById("gameCanvas");
+  let canvas = document.getElementById("gameCanvas");
 
 let ctx = canvas.getContext("2d");
 
@@ -79,12 +79,31 @@ function movePlayer() {
 
     leftBtn.addEventListener("touchstart" ,function(e){
         e.preventDefault();
-        player.x -=player.speed*3;
-    })
+     moveLeft = true;
+
+    });
+
+    leftBtn.addEventListener("touchend", function(e) {
+
+    e.preventDefault();
+
+    moveLeft = false;
+
+});
+
      rightBtn.addEventListener("touchstart" ,function(e){
         e.preventDefault();
-        player.x +=player.speed*3;
-    })
+         moveRight= true;
+    });
+rightBtn.addEventListener("touchend", function(e) {
+
+    e.preventDefault();
+
+    moveRight = false;
+
+});
+
+
 
 Shoot.addEventListener("touchstart",function(e){
     e.preventDefault();
