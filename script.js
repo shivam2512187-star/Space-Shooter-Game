@@ -73,17 +73,22 @@ function movePlayer() {
 
 }
 
-    let leftBtn= document.getElementById("leftBtn");
-    let rightBtn= document.getElementById("rightBtn");
-    let Shoot = document.getElementById("Shoot");
+  let moveLeft = false;
+let moveRight = false;
 
-    leftBtn.addEventListener("touchstart" ,function(e){
-        e.preventDefault();
-     moveLeft = true;
+let leftBtn = document.getElementById("leftBtn");
+let rightBtn = document.getElementById("rightBtn");
+let Shoot = document.getElementById("Shoot");
 
-    });
+leftBtn.addEventListener("pointerdown", function(e) {
 
-    leftBtn.addEventListener("touchend", function(e) {
+    e.preventDefault();
+
+    moveLeft = true;
+
+});
+
+leftBtn.addEventListener("pointerup", function(e) {
 
     e.preventDefault();
 
@@ -91,11 +96,22 @@ function movePlayer() {
 
 });
 
-     rightBtn.addEventListener("touchstart" ,function(e){
-        e.preventDefault();
-         moveRight= true;
-    });
-rightBtn.addEventListener("touchend", function(e) {
+leftBtn.addEventListener("pointerleave", function(e) {
+
+    moveLeft = false;
+
+});
+
+
+rightBtn.addEventListener("pointerdown", function(e) {
+
+    e.preventDefault();
+
+    moveRight = true;
+
+});
+
+rightBtn.addEventListener("pointerup", function(e) {
 
     e.preventDefault();
 
@@ -103,12 +119,20 @@ rightBtn.addEventListener("touchend", function(e) {
 
 });
 
+rightBtn.addEventListener("pointerleave", function(e) {
+
+    moveRight = false;
+
+});
 
 
-Shoot.addEventListener("touchstart",function(e){
+Shoot.addEventListener("pointerdown", function(e) {
+
     e.preventDefault();
+
     shoot();
-})
+
+});
  
 
 function drawPlayer() {
