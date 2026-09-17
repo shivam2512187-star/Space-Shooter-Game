@@ -61,6 +61,17 @@ function movePlayer() {
     if (keys["ArrowRight"] || keys["d"]) {
         player.x += player.speed;
     }
+ 
+
+    if (player.x < 0) {
+        player.x = 0;
+    }
+
+    if (player.x + player.width > canvas.width) {
+        player.x = canvas.width - player.width;
+    }
+
+}
 
     let leftBtn= document.getElementById("leftBtn");
     let rightBtn= document.getElementById("rightBtn");
@@ -79,17 +90,6 @@ Shoot.addEventListener("touchstart",function(e){
     e.preventDefault();
     shoot();
 })
-
-    if (player.x < 0) {
-        player.x = 0;
-    }
-
-    if (player.x + player.width > canvas.width) {
-        player.x = canvas.width - player.width;
-    }
-
-}
-
  
 
 function drawPlayer() {
